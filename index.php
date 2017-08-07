@@ -1,3 +1,29 @@
+<?php 
+require_once("panel/inc/newconfig.php");
+
+$user = $db->query("SELECT * FROM panel ");
+
+$titlearr=array();
+$descriptionarr=array();
+$pricearr=array();
+$sizearr=array();
+
+
+while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
+
+  	array_push($titlearr, $cek['title']);
+
+  	array_push($descriptionarr, $cek['description']);
+
+  	array_push($pricearr, $cek['price']);
+
+  	array_push($sizearr, $cek['price']);
+}
+
+
+ ?>
+
+
 <!DOCTYPE HTML>
 <!--
 	Ion by TEMPLATED
@@ -93,8 +119,8 @@
 						<div class="6u">
 							<section class="special">
 								<a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
-								<h3>Mollis adipiscing nisl</h3>
-								<p>Eget mi ac magna cep lobortis faucibus accumsan enim lacinia adipiscing metus urna adipiscing cep commodo id. Ac quis arcu amet. Arcu nascetur lorem adipiscing non faucibus odio nullam arcu lobortis. Aliquet ante feugiat. Turpis aliquet ac posuere volutpat lorem arcu aliquam lorem.</p>
+								<h3><?php echo $titlearr[0]; ?></h3>
+								<p><?php echo $descriptionarr[0]; ?></p>
 								<ul class="actions">
 									<li><a href="#" class="button alt">Learn More</a></li>
 								</ul>
@@ -103,8 +129,8 @@
 						<div class="6u">
 							<section class="special">
 								<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-								<h3>Neque ornare adipiscing</h3>
-								<p>Eget mi ac magna cep lobortis faucibus accumsan enim lacinia adipiscing metus urna adipiscing cep commodo id. Ac quis arcu amet. Arcu nascetur lorem adipiscing non faucibus odio nullam arcu lobortis. Aliquet ante feugiat. Turpis aliquet ac posuere volutpat lorem arcu aliquam lorem.</p>
+								<h3><?php echo $titlearr[1]; ?></h3>
+								<p><?php echo $descriptionarr[1]; ?></p>
 								<ul class="actions">
 									<li><a href="#" class="button alt">Learn More</a></li>
 								</ul>
