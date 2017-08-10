@@ -7,6 +7,7 @@ $titlearr=array();
 $descriptionarr=array();
 $pricearr=array();
 $sizearr=array();
+$photoarr= array();
 
 
 while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
@@ -18,6 +19,8 @@ while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
   	array_push($pricearr, $cek['price']);
 
   	array_push($sizearr, $cek['price']);
+
+  	array_push($photoarr, $cek['photo_location']);
 }
 
 
@@ -41,6 +44,7 @@ while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+		<script src="js/jscript.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -115,27 +119,50 @@ while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
 					<p>Amet nisi nunc lorem accumsan</p>
 				</header>
 				<div class="container">
-					<div class="row">
-						<div class="6u">
-							<section class="special">
-								<a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
-								<h3><?php echo $titlearr[0]; ?></h3>
-								<p><?php echo $descriptionarr[0]; ?></p>
-								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
-							</section>
-						</div>
-						<div class="6u">
-							<section class="special">
-								<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-								<h3><?php echo $titlearr[1]; ?></h3>
-								<p><?php echo $descriptionarr[1]; ?></p>
-								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
-							</section>
-						</div>
+					<div class="row" id = "add">
+
+					<?php 
+						for($i=0; $i< sizeof($titlearr); $i++ )
+						{
+							echo '<div class="6u ">'.
+								'<section class="special">'.
+									'<a href="#" class="image fit"><img src="'.$photoarr[$i] .'" alt="" /></a>'.
+									'<h3>'. $titlearr[$i] .'</h3>'.
+									'<p>'.  $descriptionarr[$i] .'</p>'.
+									'<ul class="actions">'.
+										'<li><a href="#" class="button alt">Learn More</a></li>
+									</ul>
+								</section>
+							</div>';
+
+						}
+
+					 ?>
+
+
+
+					 	<!--
+							<div class="6u ">
+								<section class="special">
+									<a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
+									<h3><?php echo $titlearr[0]; ?></h3>
+									<p><?php echo $descriptionarr[0]; ?></p>
+									<ul class="actions">
+										<li><a href="#" class="button alt">Learn More</a></li>
+									</ul>
+								</section>
+							</div>
+							<div class="6u">
+								<section class="special">
+									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+									<h3><?php echo $titlearr[1]; ?></h3>
+									<p><?php echo $descriptionarr[1]; ?></p>
+									<ul class="actions">
+										<li><a onclick ="adddiv();" class="button alt">Learn More</a></li>
+									</ul>
+								</section>
+							</div>
+						-->
 					</div>
 				</div>
 			</section>
@@ -219,6 +246,6 @@ while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
 					</ul>
 				</div>
 			</footer>
-
+			<div class = "add"></div>
 	</body>
 </html>
