@@ -7,4 +7,24 @@ try {
      print $e->getMessage();
 }
 
+
+define("TITLE", "Admin Panel");
+
+function secure($text){
+  return htmlentities($text);
+}
+
+if(isset($_SESSION['userid'])){
+  $auth = $db->query("SELECT * FROM users WHERE id='$_SESSION[userid]' LIMIT 1")->fetch();
+  if(empty($auth)){
+    session_destroy();
+    header("Location: ./index.php");
+  }
+}
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
  ?>

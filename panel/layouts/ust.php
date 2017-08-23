@@ -22,15 +22,15 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin.css" rel="stylesheet">
-
+     <link href="css/style.css" rel="stylesheet">
   </head>
 
   <body class="fixed-nav" id="page-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="index.html">Admin Panel</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.php">Admin Panel</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aiar-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -81,14 +81,14 @@
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti">
               <i class="fa fa-fw fa-sitemap"></i>
               <span class="nav-link-text">
-                Menu Levels</span>
+                Users</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseMulti">
               <li>
-                <a href="#">Second Level Item</a>
+                <a href="#">Add User</a>
               </li>
               <li>
-                <a href="#">Second Level Item</a>
+                <a href="users.php">Edit User</a>
               </li>
               <li>
                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
@@ -124,6 +124,9 @@
                 </span>
               </div>
             </form>
+          </li>
+          <li class="nav-item nameOfUser">
+           <?php echo $auth['name']; ?>            
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#exampleModal">

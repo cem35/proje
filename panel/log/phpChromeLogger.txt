@@ -1,0 +1,6 @@
+php ile log yazmaný saðlayan uygulama
+phpyi include et
+  ChromePhp::log('Hello console!');
+þeklinde yazdýr
+Chrome Logger
+https://craig.is/writing/chrome-logger

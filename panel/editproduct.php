@@ -1,5 +1,16 @@
 <?php 
-require_once("inc/newconfig.php");
+session_start();
+require_once("inc/config.php");
+
+if(!isset($_SESSION['userid'])){
+  header("Location: ./login.php");
+  exit;
+}
+
+if($auth['group_id'] != 2){
+  header("Location: ./index.php");
+  exit;
+}
 
 $user = $db->query("SELECT * FROM panel ");
 
