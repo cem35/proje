@@ -19,18 +19,14 @@
         <li>
           <a href="change-password.php"><i class="fa fa-key"></i> Change Password</a>
         </li>
-        <?php
-          if($auth['group_id'] == 2){
-        ?>
-        <li><a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
+       
+        <li><a><i class="fa fa-users"></i> Products <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="user-add.php">Add User</a></li>
-            <li><a href="users.php">Show Users</a></li>
+            <li><a href="addproduct.php">Add Product</a></li>
+            <li><a href="editproduct.php">Edit Product</a></li>
           </ul>
         </li>
-        <?php
-          }
-        ?>
+        
       </ul>
     </div>
 

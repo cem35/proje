@@ -12,15 +12,15 @@ $photoarr=array();
 
 
 while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
-	array_push($idarr, $cek['id']);
+  array_push($idarr, $cek['id']);
 
-  	array_push($titlearr, $cek['title']);
+    array_push($titlearr, $cek['title']);
 
-  	array_push($descriptionarr, $cek['description']);
+    array_push($descriptionarr, $cek['description']);
 
-  	array_push($pricearr, $cek['price']);
+    array_push($pricearr, $cek['price']);
 
-  	array_push($sizearr, $cek['size']);
+    array_push($sizearr, $cek['size']);
     
     array_push($photoarr, $cek['photo_location']);
 
@@ -31,17 +31,17 @@ while($cek = $user->fetch(PDO::FETCH_ASSOC)) {
 
 
 if($_POST){
-	$id = $_POST['id'];
+  $id = $_POST['id'];
   $title = $_POST['title'];
-	$desc = $_POST['desc'];
-	$price = $_POST['price'];
-	$size = $_POST['size'];
+  $desc = $_POST['desc'];
+  $price = $_POST['price'];
+  $size = $_POST['size'];
 
   // foto kısım
  //echo $_FILES["fileToUpload"]["name"] ; 
   if($_FILES["fileToUpload"]["name"] != "" )
   {
-            $target_dir = "panel/uploads/";
+            $target_dir = "uploads/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
              $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -84,7 +84,7 @@ if($_POST){
                   }
               }
 
-
+              $target_file= "panel/".$target_file;
                $insert = $db->query("UPDATE panel SET  title= '$title', description =  '$desc', price= '$price', size ='$size', photo_location = '$target_file' where id=".$id);
               if($insert)
               {
@@ -100,15 +100,15 @@ if($_POST){
   // foto kısım
 
 
-  $insert = $db->query("UPDATE panel SET  title= '$title', description =  '$desc', price= '$price', size ='$size' where id=".$id);
+  $insert = $db->query("UPDATE panel SET  title= '$title', description =  '$desc', price= '$price', size ='$size'  where id=".$id);
   if($insert)
   {
     $message = "User added successfully!";
-	//echo "asda";
-	}
+  //echo "asda";
+  }
   else
   {
-	//echo "else";
+  //echo "else";
     $error = "There was a database error.";
   }
 
@@ -117,13 +117,20 @@ if($_POST){
 
 
 
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Edit Product</title>
-	</head>
-	<body>
-	
+	    <?php
+              include('layouts/ust.php');
+            ?>
+
+        <!-- page content -->
+        <div class="content-wrapper py-3" role="main">
+          <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+         
+                <div class="x_title">
+                   <h2>Product</h2>
+                  <div class="clearfix"></div>
+                </div>
 	                <div class="x_content">
                   <?php
 
@@ -149,24 +156,16 @@ if($_POST){
                       foreach($applications as $application){
 
                       ?>
-                     <!-- <tr>
-                        <td class="text-center"><?php echo $application['id']; ?></td>
-                        <td class="text-center"><?php echo $application['title']; ?></td>
-                        <td class="text-center"><?php echo $application['description']; ?></td>
-                        <td class="text-center"><?php echo $application['price']; ?></td>
-                        <td class="text-center"><?php echo $application['size']; ?></td>
-                      </tr>-->
-
-
+               
 			<div class="x_content">
                   <form method="post" enctype="multipart/form-data">
                     <tr>
-					<td class="text-center"> <input type="text" name="id" id="id" value= "<?php echo $application['id']; ?> " class="form-control"></td>
+					<td class="text-center"> <input type="text" name="id" id="id"  value= "<?php echo $application['id']; ?> " class="form-control"></td>
 
 
-                    <td class="text-center"> <input type="text" name="title" id="title" value="<?php echo $application['title']; ?>" class="form-control"></td>
+                    <td class="text-center"> <input type="text"  name="title" id="title" value="<?php echo $application['title']; ?>" class="form-control"></td>
 
-                    <td class="text-center"><input type="text" name="desc" id="desc" value="<?php echo $application['description']; ?>" class="form-control"></td>
+                    <td class="text-center"><input type="text"  name="desc" id="desc" value="<?php echo $application['description']; ?>" class="form-control"></td>
 
                     <td class="text-center"><input type="text" name="price" id="price" value="<?php echo $application['price']; ?>" class="form-control"></td>
 
@@ -193,9 +192,19 @@ if($_POST){
                   </table>
 
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
+<!-- /page content -->
 
-	</body>
-	</html>
+        <!-- footer content -->
+          <?php
+            include('layouts/footer.php');
+          ?>
+        
 
+  </body>
+</html>

@@ -7,17 +7,12 @@ function addDb (){
 	$price=$_POST['price'];
 	$size= $_POST['size'];
 	
- /*if (isset($_POST['submit'])) { //to check if the form was submitted
-       
-       $db->exec( 'INSERT INTO panel (id, title, description, price, size) VALUES (NULL, '.$_POST['title'].', '.$_POST['desc'].', '.$_POST['price'].', '.$_POST['size'].');');
-       echo "a";
-       echo 'INSERT INTO panel (id, title, description, price, size) VALUES (NULL, '.$_POST['title'].', '.$_POST['desc'].', '.$_POST['price'].', '.$_POST['size'].');';
-    } */
+
 }
 if($_POST){
 
 	// foto kısım
-	$target_dir = "panel/uploads/";
+	$target_dir = "uploads/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -60,16 +55,16 @@ if($_POST){
 	    }
 	}
 
+	$target_file= "panel/".$target_file;
 	// foto kısım
     $title=$_POST['title'];
 	$desc=$_POST['desc'];
 	$price=$_POST['price'];
 	$size= $_POST['size'];
-  $insert = $db->query("INSERT INTO panel ( title, description, price, size, photo_location) VALUES ('$title', '$desc', '$price','$size', '$target_file')");
+    $insert = $db->query("INSERT INTO panel ( title, description, price, size, photo_location) VALUES ('$title', '$desc', '$price','$size', '$target_file')");
   if($insert)
   {
     $message = "User added successfully!";
-	echo "asda";
 	}
   else
   {
@@ -79,53 +74,75 @@ if($_POST){
 
 }
 ?>
+		      <?php
+	           include('layouts/ust.php');
+	          ?>
+	       
+
+	        
+	        <!-- page content -->
+	        <div class="content-wrapper py-3" role="main">
+	        	<div class="container-fluid">
+		          <div class="row">
+		            <div class="col-md-12">
+		              <?php
+		                if(isset($message)){
+		              ?>
+		              <div class="alert alert-success alert-dismissible fade in" role="alert">
+		                <strong>Successfull!</strong> <?php echo $message; ?>
+		              </div>
+		              <?php
+		                }
+		              ?>
+		              <?php
+		                if(isset($error)){
+		              ?>
+		              <div class="alert alert-danger alert-dismissible fade in" role="alert">
+		                <strong>Error!</strong> <?php echo $error; ?>
+		              </div>
+		              <?php
+		                }
+		              ?>
+		        		
+	                <div class="x_title">
+	                  <h2>Add Product</h2>
+	                  
+	                </div>
+	                <div class=" py-3">
+	                <div class="container-fluid">
+	                  <form method="post" enctype="multipart/form-data">
+	                    <label for="title">Title :</label>
+	                    <input type="text" name="title" id="title" class="form-control"><br>
+
+	                    <label for="desc">Description * :</label>
+	                    <input type="text" name="desc" id="desc" class="form-control"><br>
+
+	                    <label for="price">Price * :</label>
+	                    <input type="text" name="price" id="price" class="form-control"><br>
+
+	                    <label for="size">Size * :</label>
+	                    <input type="text" name="size" id="size" class="form-control"><br>
+	                    <br>	
+	                    <label for="size">Photo * :</label>
+	                    <input type="file" name="fileToUpload" size="25" />
+
+	                    <div class="ln_solid"></div>
+	                    <br><br>
+	                    <button type="submit" class="btn btn-primary">Save</button>
+
+	                  </form>
+	                  <!-- end form for validations -->
+	                  </div>
+	              </div>
+	           
+	         
+         <!-- /page content -->
+
+        <!-- footer content -->
+          <?php
+            include('layouts/footer.php');
+          ?>
+        <!-- /footer content -->
 
 
-
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Add Product</title>
-	</head>
-	<body>
-	
-	<table>
-	<tr> 
-	<th class="title">Title</th>
-	<th class="desc">Description</th>
-	<th class="price">Price </th>
-	<th class="size">Size</th>
-	</tr>
-	</table>
-
- <div class="x_content">
-                  <form method="post" enctype="multipart/form-data">
-                    <label for="title">Title :</label>
-                    <input type="text" name="title" id="title" class="form-control"><br>
-
-                    <label for="desc">Description * :</label>
-                    <input type="text" name="desc" id="desc" class="form-control"><br>
-
-                    <label for="price">Price * :</label>
-                    <input type="text" name="price" id="price" class="form-control"><br>
-
-                    <label for="size">Size * :</label>
-                    <input type="text" name="size" id="size" class="form-control"><br>
-
-                    <label for="size">Photo * :</label>
-                    <input type="file" name="fileToUpload" size="25" />
-
-                    <div class="ln_solid"></div>
-
-                    <button type="submit" class="btn btn-primary">Save</button>
-
-                  </form>
-                  <!-- end form for validations -->
-
-                </div>
-
-
-
-	</body>
-	</html>
-
+    
